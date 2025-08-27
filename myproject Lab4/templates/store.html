@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Store{% endblock %}
+
+{% block content %}
+    <h2>Our Products</h2>
+
+    {% if products %}
+        <div class="products-container">
+            {% for product in products %}
+                <div class="product-card">
+                    <h3>{{ product.name }}</h3>
+                    <p><strong>Price:</strong> ${{ product.price }}</p>
+                    <p>{{ product.description }}</p>
+                    <p><em>Category:</em> {{ product.get_category_display }}</p>
+                    <p><small>Added: {{ product.created_at }}</small></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No products available.</p>
+    {% endif %}
+
+    <h2>Products with price greater than 100</h2>
+{% if expensive_products %}
+    <div class="products-container">
+        {% for product in expensive_products %}
+            <div class="product-card">
+                <h3>{{ product.name }}</h3>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No expensive products found.</p>
+    {% endif %}
+
+    <h2>Products excluding those cheaper than 50</h2>
+{% if not_cheap_products %}
+    <div class="products-container">
+        {% for product in not_cheap_products %}
+            <div class="product-card">
+                <h3>{{ product.name }}</h3>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+
+    <h2>Products ordered by price (ascending)</h2>
+{% if products_by_price %}
+    <div class="products-container">
+        {% for product in products_by_price %}
+            <div class="product-card">
+                <h3>{{ product.name }}</h3>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+<h2>Products ordered by price (descending)</h2>
+{% if products_by_price_desc %}
+    <div class="products-container">
+        {% for product in products_by_price_desc %}
+            <div class="product-card">
+                <h3>{{ product.name }}</h3>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+    <h2>Products with name EXACT = "Lap"</h2>
+{% if product_exact %}
+    <ul>
+        {% for product in product_exact %}
+            <li>{{ product.name }} - ${{ product.price }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No exact match found.</p>
+{% endif %}
+
+
+<h2>Products containing "Bag" in the name</h2>
+{% if product_contains %}
+    <ul>
+        {% for product in product_contains %}
+            <li>{{ product.name }} - ${{ product.price }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No products found.</p>
+{% endif %}
+
+    <h2>Products with price between 10 and 200</h2>
+{% if products_in_range %}
+    <ul>
+        {% for product in products_in_range %}
+            <li>{{ product.name }} - ${{ product.price }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No products in this price range.</p>
+{% endif %}
+
+
+{% endblock %}
+
+
