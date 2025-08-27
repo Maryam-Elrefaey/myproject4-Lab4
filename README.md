@@ -5,7 +5,7 @@
 This project is a **practice lab using Django** to build a simple online store app.
 It was developed as part of **Lab 4** requirements for learning Django models, queries, and media handling.
 
-## ✨ Features
+## Features
 
 * **Models & Fields**
 
